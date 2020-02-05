@@ -17,7 +17,8 @@ class Blinky(Elaboratable):
                 try:
                     resources.append(platform.request(name, number))
                 except ResourceError:
-                    break
+                    if number > 0:
+                        break
             return resources
 
         leds     = [res.o for res in get_all_resources("led")]
